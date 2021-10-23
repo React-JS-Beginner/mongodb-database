@@ -27,6 +27,14 @@ const Header = () => {
             >
               Update
             </NavLink>
+            &nbsp; <span className="text-gray-500 text-lg">/</span> &nbsp;
+            <NavLink
+              activeClassName="navs-active"
+              className="text-gray-500 text-lg navs me-5"
+              to="/another"
+            >
+              Another
+            </NavLink>
           </div>
         </div>
         <hr />
