@@ -6,7 +6,7 @@ const Update = () => {
   const {id} = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/contacts${id}`)
+    fetch(`http://localhost:5000/contacts/${id}`)
       .then((res) => res.json())
       .then((data) => setContact(data));
     // .then((data) => console.log(data));
