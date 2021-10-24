@@ -12,6 +12,30 @@ const Edit = () => {
     // .then((data) => console.log(data));
   }, []);
 
+  //Contact Edit
+  const nameChangeHandler = (e) => {
+    console.log(e.target.value);
+    const updateName = e.target.value;
+    const updatedContact = { name: updateName, number: contact.number };
+    setContact(updatedContact);
+  };
+
+  const numberChangeHandler = (e) => {
+    console.log(e.target.value);
+    const updateNumber = e.target.value;
+    /* 
+    const updatedContact = { ...contact };
+    updatedContact.number = updateNumber;
+    */
+    const updatedContact = { name: contact.name, number: updateNumber };
+    setContact(updatedContact);
+  };
+
+  //Update & Save Contact
+  const updateContactHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="container mx-auto text-center mt-6">
       <span className="text-gray-500 text-2xl uppercase">
@@ -27,10 +51,8 @@ const Edit = () => {
         </h1>
       </div>
       {/* Form Field */}
-      <div className="px-52">
-        <form
-        // onSubmit={addContactHandler}
-        >
+      <div className="mx-52">
+        <form onSubmit={updateContactHandler}>
           <div className="flex mt-12 items-center">
             {/* Name */}
             <input
@@ -47,9 +69,11 @@ const Edit = () => {
                 focus:outline-none  
                 focus:border-red-500"
               // ref={nameRef}
+              onChange={nameChangeHandler}
               id="inline-full-name"
               type="text"
               placeholder="Change Name"
+              value={contact.name || " "}
             />
 
             {/* Contact */}
@@ -66,9 +90,11 @@ const Edit = () => {
                 focus:outline-none  
                 focus:border-red-500"
               // ref={numberRef}
+              onChange={numberChangeHandler}
               id="inline-full-name"
               type="text"
               placeholder="Change Contact"
+              value={contact.number || " "}
             />
             {/* Button */}
             <button
@@ -83,6 +109,7 @@ const Edit = () => {
                 px-4 
                 rounded"
               type="submit"
+              value="Update"
             >
               SAVE
             </button>
@@ -90,7 +117,6 @@ const Edit = () => {
           </div>
         </form>
       </div>
-
     </div>
   );
 };
