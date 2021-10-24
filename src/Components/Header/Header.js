@@ -7,9 +7,9 @@ const Header = () => {
     <div className="container mx-auto">
       {/* nav-section */}
       <div className="mt-8">
-        <h1 className="text-red-500 text-4xl uppercase font-bold">Server</h1>
+        <h1 className="text-red-500 text-4xl uppercase font-bold">Ideal</h1>
         <div className="mb-3 flex justify-between">
-          <span className="text-gray-500 text-lg">User's Info</span>
+          <span className="text-gray-500 text-lg">Contact Editor</span>
 
           <div>
             <NavLink
@@ -23,7 +23,7 @@ const Header = () => {
             <NavLink
               activeClassName="navs-active"
               className="text-gray-500 text-lg navs me-5"
-              to="/update"
+              to="/contacts/update"
             >
               Update
             </NavLink>
@@ -31,11 +31,12 @@ const Header = () => {
             <NavLink
               activeClassName="navs-active"
               className="text-gray-500 text-lg navs me-5"
-              to="/another"
+              to="/empty"
             >
-              Another
+              Empty
             </NavLink>
           </div>
+          
         </div>
         <hr />
       </div>

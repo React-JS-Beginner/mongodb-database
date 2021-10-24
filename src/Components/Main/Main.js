@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Main = () => {
   const [contacts, setContacts] = useState([]);
@@ -7,7 +8,7 @@ const Main = () => {
   const numberRef = useRef();
 
   //Node will block this fetch by Cors policy that's why install Cors in server
-  //And Call Cors and Express.json in server
+  //don't forget to use cors and express.json() in server
   useEffect(() => {
     fetch("http://localhost:5000/contacts")
       .then((res) => res.json())
@@ -15,8 +16,7 @@ const Main = () => {
     // .then((data) => console.log(data));
   }, []);
 
-  const addContactHandler = (e) => {
-    e.preventDefault();
+  const addContactHandler = (e) => {    
     // console.log(nameRef.current);
     // console.log(nameRef.current.value);
     const name = nameRef.current.value;
@@ -34,15 +34,37 @@ const Main = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data); /* 
+        console.log(data); 
         const addContact = data;
         const newContact = [...contacts, addContact]
-        setContacts(newContact); */
+        setContacts(newContact);
       });
 
     nameRef.current.value = "";
     numberRef.current.value = "";
+    e.preventDefault();
   };
+
+  const deleteHandler = id => {
+    const proceed = window.confirm('Are you sure ? You want to delete this contact?')
+    if(proceed){
+      fetch(`http://localhost:5000/contacts/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => res.json())
+      .then((data) => {
+        // console.log(data); 
+        if(data.deleleCount > 0){
+          const remainingContacts = contacts.filter(contact => contact._id !== id);
+          setContacts(remainingContacts);
+        }  
+        
+      });
+    }
+  }
 
   return (
     <div className="container mx-auto">
@@ -146,11 +168,11 @@ const Main = () => {
                     </p>
                   </div>
 
-                  <div className="flex">
-                    <button>
+                  <div className="flex items-center">
+                    <Link to={`/contacts/update/${contact._id}`}>
                       <i class="fas fa-redo text-gray-300 text-xl mr-4"></i>
-                    </button>
-                    <button>
+                    </Link>
+                    <button onClick={() => deleteHandler(contact._id)}>
                       <i className="fas fa-trash-alt text-red-500 text-xl"></i>
                     </button>
                   </div>

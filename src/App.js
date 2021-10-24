@@ -14,7 +14,7 @@ function App() {
         <Route path="/main">
           <Main></Main>
         </Route>
-        <Route path="/update">
+        <Route path="/contacts/update/:id">
           <Update></Update>
         </Route>
       </Switch>
