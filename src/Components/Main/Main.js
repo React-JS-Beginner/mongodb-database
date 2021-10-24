@@ -16,7 +16,7 @@ const Main = () => {
     // .then((data) => console.log(data));
   }, []);
 
-  const addContactHandler = (e) => {    
+  const addContactHandler = (e) => {
     // console.log(nameRef.current);
     // console.log(nameRef.current.value);
     const name = nameRef.current.value;
@@ -34,9 +34,9 @@ const Main = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data); 
+        console.log(data);
         const addContact = data;
-        const newContact = [...contacts, addContact]
+        const newContact = [...contacts, addContact];
         setContacts(newContact);
       });
 
@@ -45,26 +45,29 @@ const Main = () => {
     e.preventDefault();
   };
 
-  const deleteHandler = id => {
-    const proceed = window.confirm('Are you sure ? You want to delete this contact?')
-    if(proceed){
+  const deleteHandler = (id) => {
+    const proceed = window.confirm(
+      "Are you sure ? You want to delete this contact?"
+    );
+    if (proceed) {
       fetch(`http://localhost:5000/contacts/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((res) => res.json())
-      .then((data) => {
-        // console.log(data); 
-        if(data.deleleCount > 0){
-          const remainingContacts = contacts.filter(contact => contact._id !== id);
-          setContacts(remainingContacts);
-        }  
-        
-      });
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          if (data.deleleCount > 0) {
+            const remainingContacts = contacts.filter(
+              (contact) => contact._id !== id
+            );
+            setContacts(remainingContacts);
+          }
+        });
     }
-  }
+  };
 
   return (
     <div className="container mx-auto">
@@ -169,8 +172,8 @@ const Main = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <Link to={`/contacts/update/${contact._id}`}>
-                      <i class="fas fa-redo text-gray-300 text-xl mr-4"></i>
+                    <Link to={`/contacts/edit/${contact._id}`}>
+                      <i class="fas fa-edit text-gray-300 font-thin text-xl mr-4 "></i>
                     </Link>
                     <button onClick={() => deleteHandler(contact._id)}>
                       <i className="fas fa-trash-alt text-red-500 text-xl"></i>

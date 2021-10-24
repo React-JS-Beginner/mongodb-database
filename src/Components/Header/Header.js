@@ -23,17 +23,17 @@ const Header = () => {
             <NavLink
               activeClassName="navs-active"
               className="text-gray-500 text-lg navs me-5"
-              to="/contacts/update"
+              to="/edit"
             >
-              Update
+              Edit
             </NavLink>
             &nbsp; <span className="text-gray-500 text-lg">/</span> &nbsp;
             <NavLink
               activeClassName="navs-active"
               className="text-gray-500 text-lg navs me-5"
-              to="/empty"
+              to="/update"
             >
-              Empty
+              Update
             </NavLink>
           </div>
           
