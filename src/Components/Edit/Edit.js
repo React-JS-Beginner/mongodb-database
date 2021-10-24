@@ -33,6 +33,21 @@ const Edit = () => {
 
   //Update & Save Contact
   const updateContactHandler = (e) => {
+    const url = `http://localhost:5000/contacts/${id}`;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contact),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if(data.modifiedCount > 0){
+          setContact({});
+        }
+      });
     e.preventDefault();
   };
 
