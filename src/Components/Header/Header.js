@@ -11,7 +11,7 @@ const Header = () => {
         <div className="mb-3 flex justify-between">
           <span className="text-gray-500 text-lg">User's Info</span>
 
-          <div className="mr-12">
+          <div>
             <NavLink
               activeClassName="navs-active"
               className="text-gray-500 text-lg navs me-5"

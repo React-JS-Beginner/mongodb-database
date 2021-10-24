@@ -6,11 +6,13 @@ const Main = () => {
   const nameRef = useRef();
   const numberRef = useRef();
 
-  //Node will block this fetch by Cors policy that why install Cors
+  //Node will block this fetch by Cors policy that's why install Cors in server
+  //And Call Cors and Express.json in server
   useEffect(() => {
     fetch("http://localhost:5000/contacts")
       .then((res) => res.json())
       .then((data) => setContacts(data));
+    // .then((data) => console.log(data));
   }, []);
 
   const addContactHandler = (e) => {
@@ -44,7 +46,6 @@ const Main = () => {
 
   return (
     <div className="container mx-auto">
-      
       {/* main-section */}
       <div className="container mx-auto px-8 flex justify-between">
         {/* Form Field */}
@@ -133,15 +134,26 @@ const Main = () => {
         rounded-r-xl 
         shadow-md"
               >
-                <div>
-                  <div className="text-xl font-medium text-black">
-                    {contact.name}
+                <div className="flex justify-between">
+                  <div>
+                    <div className="text-xl font-medium text-black">
+                      {contact.name}
+                    </div>
+                    <p className="text-gray-500">
+                      <i className="fas fa-phone text-red-500"></i>
+                      &nbsp; &nbsp;
+                      {contact.number}
+                    </p>
                   </div>
-                  <p className="text-gray-500">
-                    <i className="fas fa-phone text-red-500"></i>
-                    &nbsp; &nbsp;
-                    {contact.number}
-                  </p>
+
+                  <div className="flex">
+                    <button>
+                      <i class="fas fa-redo text-gray-300 text-xl mr-4"></i>
+                    </button>
+                    <button>
+                      <i className="fas fa-trash-alt text-red-500 text-xl"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
