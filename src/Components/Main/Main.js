@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 const Main = () => {
   const [contacts, setContacts] = useState([]);
@@ -47,7 +48,7 @@ const Main = () => {
 
   const deleteHandler = (id) => {
     const proceed = window.confirm(
-      "Are you sure ? You want to delete this contact?"
+      "Are you sure you want to delete this contact?"
     );
     if (proceed) {
       fetch(`http://localhost:5000/contacts/${id}`, {

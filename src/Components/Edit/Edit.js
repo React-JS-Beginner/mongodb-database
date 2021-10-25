@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 
 const Edit = () => {
   const [contact, setContact] = useState({});
+  const [success, setSuccess] = useState();
   const { id } = useParams();
 
   useEffect(() => {
@@ -43,13 +44,20 @@ const Edit = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        if(data.modifiedCount > 0){
+        console.log(data);
+        /* if(data.modifiedCount > 0){
           setContact({});
+        } */
+        if (data.modifiedCount > 0) {
+          setSuccess("Contact Saved & Updated Successfully!");
         }
       });
     e.preventDefault();
   };
+
+  const successClearHandler = () => {
+    setSuccess("");
+  }
 
   return (
     <div className="container mx-auto text-center mt-6">
@@ -84,10 +92,10 @@ const Edit = () => {
                 focus:outline-none  
                 focus:border-red-500"
               // ref={nameRef}
+              onClick={successClearHandler}
               onChange={nameChangeHandler}
               id="inline-full-name"
               type="text"
-              placeholder="Change Name"
               value={contact.name || " "}
             />
 
@@ -105,10 +113,10 @@ const Edit = () => {
                 focus:outline-none  
                 focus:border-red-500"
               // ref={numberRef}
+              onClick={successClearHandler}
               onChange={numberChangeHandler}
               id="inline-full-name"
               type="text"
-              placeholder="Change Contact"
               value={contact.number || " "}
             />
             {/* Button */}
@@ -131,6 +139,9 @@ const Edit = () => {
             {/* Button */}
           </div>
         </form>
+        <div className="mt-6">
+          <p className="text-red-500">{success}</p>
+        </div>
       </div>
     </div>
   );
