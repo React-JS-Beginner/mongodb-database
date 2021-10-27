@@ -7,7 +7,7 @@ const Edit = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/contacts/${id}`)
+    fetch(`https://radiant-hamlet-83461.herokuapp.com/contacts/${id}`)
       .then((res) => res.json())
       .then((data) => setContact(data));
     // .then((data) => console.log(data));
@@ -34,7 +34,7 @@ const Edit = () => {
 
   //Update & Save Contact
   const updateContactHandler = (e) => {
-    const url = `http://localhost:5000/contacts/${id}`;
+    const url = `https://radiant-hamlet-83461.herokuapp.com/contacts/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -57,7 +57,7 @@ const Edit = () => {
 
   const successClearHandler = () => {
     setSuccess("");
-  }
+  };
 
   return (
     <div className="container mx-auto text-center mt-6">

@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import swal from "sweetalert";
 
 const Main = () => {
   const [contacts, setContacts] = useState([]);
@@ -11,7 +10,7 @@ const Main = () => {
   //Node will block this fetch by Cors policy that's why install Cors in server
   //don't forget to use cors and express.json() in server
   useEffect(() => {
-    fetch("http://localhost:5000/contacts")
+    fetch("https://radiant-hamlet-83461.herokuapp.com/contacts")
       .then((res) => res.json())
       .then((data) => setContacts(data));
     // .then((data) => console.log(data));
@@ -26,7 +25,7 @@ const Main = () => {
     // const newContact = {name, number} //if the keys and values are same then you can use this
 
     //send data to server
-    fetch("http://localhost:5000/contacts", {
+    fetch("https://radiant-hamlet-83461.herokuapp.com/contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +50,7 @@ const Main = () => {
       "Are you sure you want to delete this contact?"
     );
     if (proceed) {
-      fetch(`http://localhost:5000/contacts/${id}`, {
+      fetch(`https://radiant-hamlet-83461.herokuapp.com/contacts/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
