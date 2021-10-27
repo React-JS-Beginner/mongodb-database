@@ -60,7 +60,7 @@ const Main = () => {
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);
-          if (data.deleleCount > 0) {
+          if (data.deletedCount > 0) {
             const remainingContacts = contacts.filter(
               (contact) => contact._id !== id
             );
