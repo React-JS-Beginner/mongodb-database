@@ -39,12 +39,12 @@ const Main = () => {
         const addContact = data;
         const newContact = [...contacts, addContact];
         setContacts(newContact);
+        setControl(!control);
       });
 
     nameRef.current.value = "";
     numberRef.current.value = "";
     e.preventDefault();
-    setControl(!control);
   };
 
   const deleteHandler = (id) => {
