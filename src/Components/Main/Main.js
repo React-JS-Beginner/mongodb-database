@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Main = () => {
   const [contacts, setContacts] = useState([]);
+  const [control, setControl] = useState(false);
   const nameRef = useRef();
   const numberRef = useRef();
 
@@ -14,7 +15,7 @@ const Main = () => {
       .then((res) => res.json())
       .then((data) => setContacts(data));
     // .then((data) => console.log(data));
-  }, []);
+  }, [control]);
 
   const addContactHandler = (e) => {
     // console.log(nameRef.current);
@@ -43,6 +44,7 @@ const Main = () => {
     nameRef.current.value = "";
     numberRef.current.value = "";
     e.preventDefault();
+    setControl(!control);
   };
 
   const deleteHandler = (id) => {
@@ -146,6 +148,7 @@ const Main = () => {
             <span className="text-black">{contacts.length}</span> Contacts
           </h1>
           {/* Contact Bar */}
+          {/* ///////////////////////////// Load Data (|) ///////////////////////////////// */}
           {contacts.map((contact) => (
             <div key={contact.id} className="h-16 mb-12">
               <div
@@ -183,6 +186,7 @@ const Main = () => {
               </div>
             </div>
           ))}
+          {/* ///////////////////////////// Load Data (O) ///////////////////////////////// */}
         </div>
 
         {/* Div-End */}
